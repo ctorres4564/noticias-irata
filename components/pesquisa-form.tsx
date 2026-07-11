@@ -3,6 +3,13 @@
 import { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { Noticia, ResumoPesquisa } from "@/lib/pipeline/types";
 import { NoticiaCard } from "./noticia-card";
 import { ResumoGeral } from "./resumo-geral";
@@ -147,45 +154,42 @@ export function PesquisaForm() {
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             <div>
               <label className="block text-sm font-medium mb-1">Período</label>
-              <select
-                value={periodo}
-                onChange={(e) => setPeriodo(e.target.value)}
-                className="w-full rounded-lg border border-zinc-300 bg-white px-3 py-2 text-sm"
-              >
-                {PERIODOS.map((p) => (
-                  <option key={p.value} value={p.value}>
-                    {p.label}
-                  </option>
-                ))}
-              </select>
+              <Select value={periodo} onValueChange={(v) => v && setPeriodo(v)}>
+                <SelectTrigger className="w-full">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  {PERIODOS.map((p) => (
+                    <SelectItem key={p.value} value={p.value}>{p.label}</SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
             </div>
             <div>
               <label className="block text-sm font-medium mb-1">Quantidade</label>
-              <select
-                value={quantidade}
-                onChange={(e) => setQuantidade(e.target.value)}
-                className="w-full rounded-lg border border-zinc-300 bg-white px-3 py-2 text-sm"
-              >
-                {QUANTIDADES.map((q) => (
-                  <option key={q} value={q}>
-                    {q} notícias
-                  </option>
-                ))}
-              </select>
+              <Select value={quantidade} onValueChange={(v) => v && setQuantidade(v)}>
+                <SelectTrigger className="w-full">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  {QUANTIDADES.map((q) => (
+                    <SelectItem key={q} value={String(q)}>{q} notícias</SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
             </div>
             <div>
               <label className="block text-sm font-medium mb-1">Canal</label>
-              <select
-                value={canal}
-                onChange={(e) => setCanal(e.target.value)}
-                className="w-full rounded-lg border border-zinc-300 bg-white px-3 py-2 text-sm"
-              >
-                {CANAIS.map((c) => (
-                  <option key={c.value} value={c.value}>
-                    {c.label}
-                  </option>
-                ))}
-              </select>
+              <Select value={canal} onValueChange={(v) => v && setCanal(v)}>
+                <SelectTrigger className="w-full">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  {CANAIS.map((c) => (
+                    <SelectItem key={c.value} value={c.value}>{c.label}</SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
             </div>
           </div>
 
