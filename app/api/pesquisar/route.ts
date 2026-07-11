@@ -20,11 +20,15 @@ export async function POST(request: NextRequest) {
       try {
         emit(controller, { etapa: "inicio" });
 
-        const queriesTotal = 14;
-        let queryAtual = 0;
-
         const todasBrutas: NoticiaBruta[] = [];
         const queries = [
+          // Português
+          "IRATA acesso por cordas",
+          "trabalho em altura segurança",
+          "acidente em altura 2026",
+          "NR 35 trabalho em altura",
+          "treinamento IRATA certificação",
+          // English
           "IRATA International rope access news 2026",
           "IRATA safety bulletin 2026",
           "rope access accident investigation",
@@ -35,6 +39,9 @@ export async function POST(request: NextRequest) {
           "offshore rope access inspection maintenance",
           "wind turbine rope access blade repair",
         ];
+
+        const queriesTotal = queries.length;
+        let queryAtual = 0;
 
         for (const q of queries) {
           queryAtual++;
